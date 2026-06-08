@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block style %}
+    {% load static %}
+    <link href="{% static "css/hh.css" %}" rel="stylesheet">
+<style>
+    #pre_btn{
+        width: 135px; 
+    }
+    .pne_p{
+        text-align: justify;
+        width: 95%;
+    }
+</style>
+{% endblock %}
+
+{% block title %} Pneumonia{%endblock%}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="page-header">
+        <h3 class="page-title text-success">Prediction Pneumonia</h3>
+    </div>
+    <div class="card">
+        <div class="card-body custom-edit-service">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Pneumonia</h3>
+                    <p class="pne_p">
+                        La pneumonie est une infection respiratoire qui inflamme les alvéoles pulmonaires, causée par des agents infectieux tels que des bactéries, des virus ou des champignons. Les symptômes incluent fièvre, toux, essoufflement, douleurs thoraciques et fatigue. Cette maladie peut être grave, surtout chez les personnes âgées, les nourrissons et celles avec des maladies chroniques.
+                    </p>
+                    <h3>facteurs de risque</h3>
+                    <p class="pne_p">
+                        Les facteurs de risque de la pneumonie incluent notamment l'âge avancé, le tabagisme, les maladies chroniques telles que les maladies pulmonaires obstructives chroniques (MPOC), le diabète et l'affaiblissement du système immunitaire. Les personnes exposées à ces facteurs ont un risque accru de contracter la pneumonie.
+                    </p>
+                    <h3>Méthodes de diagnostic</h3>
+                    <p class="pne_p">
+                        Pour diagnostiquer la pneumonie, différentes méthodes peuvent être utilisées, notamment des radiographies pulmonaires pour visualiser les anomalies dans les poumons, des analyses de sang pour détecter des signes d'infection et parfois des échantillons d'expectorations pour identifier l'agent infectieux spécifique.
+                    </p>
+                    <!-- <h3>Options de traitement</h3>
+                    <p class="pne_p">
+                        Les options de traitement pour la pneumonie dépendent de la cause et de la gravité de l'infection. Les antibiotiques sont souvent prescrits pour les pneumonies bactériennes, tandis que les antiviraux peuvent être utilisés pour les pneumonies virales. En plus des médicaments, des soins de soutien tels que le repos, l'hydratation et la gestion des symptômes peuvent être nécessaires pour favoriser la guérison et prévenir les complications.
+                    </p> -->
+                </div>
+                <div class="col-md-6">
+                    <form action="{% url 'pneumonia'%}" method="POST" enctype="multipart/form-data" class="row g-3">
+                        {% csrf_token %}
+                        {% load static %}
+                        <img src="{% static 'images/picture.gif' %}" class="img_p mx-auto d-block" alt="pneumonia" style="height:0%;width: 95%;border-radius: 60px;">
+                        <div class="col-6 submit-section" style="text-align: center;">
+                            <input type="file" id="fileInput" name="pneumonia" accept="image/*" style="display: none;" >
+                            <button type="button" class="btn btn-info" onclick="chooseFile()">Charge une photo</button>
+                        </div>
+                        <div class="col-6 submit-section" style="text-align: center;">
+                            <button type="submit" id="pre_btn" class="btn btn-primary submit-btn">Prédire</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+        {% if affiche == 1 %}
+            <div class="card" id="resultCard">
+                <div class="card-body custom-edit-service">
+                    <div class="result_prediction">
+                        <p>patient User name : {{username}}</p>
+                        <p>prediction maladie : 
+                            {% if prediction >= 50 %}
+                            <span style="color: #FF0000;">Vous souffrez de Pneumonia</span>
+                            {% else %}
+                            <span style="color: #008000;">Vous souffrez pas Pneumonia</span>
+                            {% endif %}
+                        </p>
+                        <p>pourcentage de maladie est : {{prediction}}%</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+</div>
+
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static "js/result.js"%}"></script>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% autoescape off %}
+Bienvenue à la prédiction des maladies
+
+Bonjour {{ name }},
+
+Veuillez confirmer votre adresse e-mail en cliquant sur le lien ci-dessous :
+
+Lien de confirmation : http://{{ domain }}{% url 'Confirm_email' uidb64=uid token=token %}
+
+Si vous n'avez pas créé de compte avec cette adresse e-mail, veuillez ignorer cet e-mail ou nous contacter immédiatement.
+
+Cordialement,
+L'équipe de prédiction des maladies
+{% endautoescape %}

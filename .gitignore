@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+/media
+/static
+/staticfiles
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.env
+.env.local
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.venv
+.idea/
+
+# Temporary files
+*tempCodeRunnerFile*
+*.tmp
+.temp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-specific
+/media/photos/*
+!.gitkeep
+local_settings.py
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Package lock files (optionnel - à adapter selon vos préférences)
+# poetry.lock
+# package-lock.json

@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block style %}
+{% load static %}
+    <link href="{% static "css/hh.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %} Diabetes{%endblock%}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="page-header">
+            <h3 class="page-title text-success">Prediction Diabetes</h3>
+        </div>
+        <div class="card">
+            <div class="card-body custom-edit-service">
+                <form action="{% url 'diabetes'%}" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                        <label for="age" class="form-label">Âge (en années) :</label>
+                        <input type="text" name="age" id="age" class="form-control" required>
+                        {% comment %} <small id="ageHelp" class="form-text text-muted">Veuillez entrer votre âge en années.</small> {% endcomment %}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="sex" class="form-label">Sexe :</label>
+                        <select name="sex" id="sex" class="form-control" onchange="togglePregnanciesInput()">
+                            <option value="men">Homme</option>
+                            <option selected value="women">Femme</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Pregnancies" class="form-label">Nombre de grossesses (number) :</label>
+                        <input type="text" name="Pregnancies" id="Pregnancies" class="form-control " required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Glucose" class="form-label">Niveau de Glucose dans le sang (en mg/dL) : </label>
+                        <input type="text" name="Glucose" id="Glucose" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="BloodPressure" class="form-label">Pression artérielle (en mmHg) :</label>
+                        <input type="text" name="BloodPressure" id="BloodPressure" class="form-control" required>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="SkinThickness" class="form-label">Épaisseur de la peau (en mm) :</label>
+                        <input type="text" name="SkinThickness" id="SkinThickness" class="form-control" required>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Insulin" class="form-label">Niveau d'Insuline dans le sang (en mIU/L) :</label>
+                        <input type="text" name="Insulin" id="Insulin" class="form-control" required>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="BMI" class="form-label">Indice de Masse Corporelle (BMI) :</label>
+                        <input type="text" name="BMI" id="BMI" class="form-control" required>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="DiabetesPedigreeFunction" class="form-label">Pourcentage de diabète dans la famille :</label>
+                        <input type="text" name="DiabetesPedigreeFunction" id="DiabetesPedigreeFunction" class="form-control" required>
+                        
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="on" id="save" name='save'>
+                            <label class="form-check-label" for="save">Enregistrer les données</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 submit-section" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary submit-btn">Prédire</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        {% if affiche == 1 %}
+            <div class="card" id="resultCard">
+                <div class="card-body custom-edit-service">
+                    <div class="result_prediction">
+                        <p>patient User name : {{username}}</p>
+                        <p>Age : {{age}}</p>
+                        <p>prediction maladie : 
+                            {% if prediction >= 50 %}
+                            <span style="color: #FF0000;">Vous souffrez de diabétique</span>
+                            {% else %}
+                            <span style="color: #008000;">Vous n'êtes pas diabétique</span>
+                            {% endif %}
+                        </p>
+                        <p>pourcentage de maladie est : {{prediction}}%</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static "js/result.js"%}"></script>
+{% endblock %}

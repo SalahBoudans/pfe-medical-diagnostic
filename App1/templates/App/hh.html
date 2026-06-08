@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                    <div class="alert alert-danger" role="alert" data-mdb-color="danger">{{ message }}</div>
+                    {% endif %}
+                    {% if message.tags == 'success' %}
+                    <div class="alert alert-success" role="alert" data-mdb-color="danger">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+    <form action="{% url 'change_password' uidb64=uidb64 token=token %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="r_password">
+        <input type="text" name="c_password">
+        <input type="submit" value="test hhh">
+    </form>
+</body>
+</html>

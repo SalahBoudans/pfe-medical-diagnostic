@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>home</h1>
+    <h1>{{user_id}}</h1>
+    <button><a href="{% url 'logout'%}">logout</a></button>
+{% endblock %}

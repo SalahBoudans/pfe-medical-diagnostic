@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Box Icons  -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Styles  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {% load static %}
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "css/dashbord_style.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar close">
+        <!-- ========== Logo ============  -->
+        <a href="#" class="logo-box">
+            <i class='bx bxl-xing'></i>
+            <div class="logo-name">SALAH</div>
+        </a>
+
+        <!-- ========== List ============  -->
+        <ul class="sidebar-list" style="padding-bottom: 0">
+            <!-- -------- Non Dropdown List Item ------- -->
+            <li>
+                <div class="title">
+                    <a href="{% url 'home'%}" class="link active">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="name">Dashboard</span>
+                    </a>
+                </div>
+                <div class="submenu">
+                    <a href="{% url 'home'%}" class="link submenu-title">Dashboard</a>
+                </div>
+            </li>
+
+            <!-- -------- Dropdown List Item ------- -->
+            <li class="dropdown">
+                <div class="title">
+                    <a href="{% url 'diabetes'%}" class="link">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    <span class="name">Diabetes Prediction</span>
+                </a>
+                </div>
+                <div class="submenu">
+                    <a href="{% url 'diabetes'%}" class="link submenu-title">Diabetes Prediction</a>
+                </div>
+            </li>
+            <!-- -------- Dropdown List Item ------- -->
+            <li class="dropdown">
+                <div class="title">
+                    <a href="{% url 'pneumonia'%}" class="link">
+                        <i class="fa-solid fa-lungs-virus"></i>
+                    <span class="name">pneumonia Prediction</span>
+                </a>
+                </div>
+                <div class="submenu">
+                    <a href="{% url 'pneumonia'%}" class="link submenu-title">pneumonia Prediction</a>
+                </div>
+            </li>
+
+            <!-- -------- Dropdown List Item ------- -->
+            <li class="dropdown">
+                <div class="title">
+                    <a href="{% url 'cardio'%}" class="link">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    <span class="name">Cardiovascular Prediction</span>
+                    </a>
+                </div>
+                <div class="submenu">
+                    <a href="{% url 'cardio'%}" class="link">Cardiovascular Prediction</a>
+                </div>
+            </li>
+            <!-- -------- Dropdown List Item ------- -->
+            <li class="dropdown">
+                <div class="title">
+                    <a href="{% url 'chatbot'%}" class="link">
+                        <i class="fa-regular fa-comments"></i>
+                    <span class="name">chatbot</span>
+                    </a>
+                </div>
+                <div class="submenu">
+                    <a href="{% url 'cardio'%}" class="link">chatbot</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="title">
+                    <a href="{% url 'logout'%}" class="link" >
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span class="name">Se déconnecter</span>
+                    </a>
+                </div>
+                <div class="submenu">
+                    <a href="{% url 'logout'%}" class="link submenu-title" >Se déconnecter</a>
+                    <!-- submenu links here  -->
+                </div>
+            </li>             
+        </ul>
+    </div>
+
+    <!-- ============= Home Section =============== -->
+    <section class="home">
+        <div class="content">
+            <header>
+                <nav>
+                    <h1> Diagnostic Médical</h1>
+                    <div class="right">
+                        <p>Accueil</p>
+                        
+                        <button>Accéder à la page de prédiction </button>
+                    </div>
+                </nav>
+            
+                <section class="presentation first">
+                    <div class="product-presentation">
+                        <h1>Bienvenue !</h1>
+                        <p>
+                            Explorez nos outils de prédiction médicale de pointe, conçus pour anticiper et identifier diverses conditions de santé telles que le diabète, les maladies cardiaques et la pneumonie. Notre technologie utilise des algorithmes sophistiqués et des données médicales fiables pour vous fournir des prédictions précises et des conseils personnalisés.
+            Nous sommes déterminés à vous offrir les informations les plus pertinentes et à vous aider à prendre des décisions éclairées concernant votre santé. Que vous souhaitiez prévenir une maladie ou mieux gérer une condition existante, notre site est là pour vous accompagner tout au long de votre parcours vers le bien-être.
+            <br> Bienvenue dans l'avenir de la médecine prédictive !
+                        </p>
+                        <button>Prédire</button>
+                    
+                    <div class="image-presentation">
+                    </div>
+            
+                </section>
+            </header>
+            
+            <section class="presentation second">
+                <div class="product-presentation">
+                    <p class="new">Nouvelles Découvertes Médicales</p>
+                    <h1>Technologie Avancée pour la Santé</h1>
+                    <p>
+                        Découvrez comment notre équipe de chercheurs utilise l'intelligence artificielle et l'analyse de données pour révolutionner le domaine de la santé. Nos algorithmes sophistiqués permettent une détection précoce des maladies, offrant ainsi des possibilités de traitement plus efficaces.
+                    </p>
+                </div>
+            </section>
+            
+            <footer>
+                <div class="column">
+                    <h3>Aide</h3>
+                    <p>contact@health.fr</p>
+                    <p>Contactez-nous</p>
+                    <p>Comment acheter</p>
+                </div>
+                <div class="column">
+                    <h3>Recrutement</h3>
+                    <p>business@health.fr</p>
+                    <p>Postuler en ligne</p>
+                    <p>Comment faire ?</p>
+                </div>
+                <div class="column">
+                    <h3>Réseaux</h3>
+                    <p>Facebook</p>
+                    <p>Twitter</p>
+                    <p>Instagram</p>
+                </div>
+            </footer>
+        </div>
+    </section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static "js/main.js"%}"></script>
+
+</html>
+

@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block style %}
+    {% load static %}
+    <link href="{% static "css/hh.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %} Cardiovascular{%endblock%}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="page-header">
+            <h3 class="page-title text-success">Prediction Cardiovascular</h3>
+        </div>
+        <div class="card">
+            <div class="card-body custom-edit-service">
+                <form action="{% url 'cardio'%}" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                        <label for="age" class="form-label">Âge :</label>
+                        <input type="text" name="age" id="age" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Sexe" class="form-label">Sexe :</label>
+                        <select id="Sexe" name="Sexe" class="form-select" required>
+                            <option selected value="1"> Homme</option>
+                            <option value="0">Femme</option>
+                        </select>        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="chest_pain" class="form-label">Type de douleur thoracique :</label>
+                        <select id="chest_pain" name="chest_pain" class="form-select">
+                            <option value="0"> Angina typique</option>
+                            <option value="1">Angine atypique</option>
+                            <option value="2">Douleur non angineuse</option>
+                            <option selected value="3">Absence de douleur</option>
+                        </select>        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="blood_pressure" class="form-label">Pression artérielle au repos en mmHg : </label>
+                        <input type="text" name="blood_pressure" id="blood_pressure" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cholestoral" class="form-label">Cholestérol sérique en mg/dL :</label>
+                        <input type="text" name="cholestoral" id="cholestoral" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="blood_sugar" class="form-label">Glycémie à jeun :</label>
+                        <select id="blood_sugar" name="blood_sugar" class="form-select">
+                            <option selected value="0"> supérieur ou égal a 120 mg/dL</option>
+                            <option value="1">inférieurs a 120 mg/dL</option>
+                        </select>        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="electrocardiographic" class="form-label">Résultats électrocardiographiques au repos :</label>
+                        <select id="electrocardiographic" name="electrocardiographic" class="form-select">
+                            <option selected value="0">Normal</option>
+                            <option value="1">Abnormal </option>
+                            <option value="2">Abnormal </option>
+                        </select>        
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="heart_rate" class="form-label">Fréquence cardiaque maximale atteinte (bpm) :</label>
+                        <input type="text" name="heart_rate" id="heart_rate" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="exercise" class="form-label">Angine déclenchée par l'exercice :</label>
+                        <select id="exercise" name="exercise" class="form-select">
+                            <option selected value="0"> Absent</option>
+                            <option value="2">Présent</option>
+                        </select>        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="slope" class="form-label">Pente du segment ST à l'exercice maximal :</label>
+                        <select id="slope" name="slope" class="form-select">
+                            <option selected value="0"> Ascendante</option>
+                            <option value="1">Plate</option>
+                            <option value="2">Descendante</option>
+                        </select>        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Oldpeak" class="form-label">dépression induite par l'exercice par rapport au repos (valuer entre 0 et 6.2) :</label>
+                        <input type="text" name="Oldpeak" id="Oldpeak" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="major_vessels" class="form-label">Nombre de gros vaisseaux colorés par fluoroscopie : </label>
+                        <select id="major_vessels" name="major_vessels" class="form-select">
+                            <option selected value="0">Aucun</option>
+                            <option value="1">Un</option>
+                            <option value="2">Deux</option>
+                            <option value="3">Trois</option>
+                        </select>        
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Thalassemia" class="form-label">Thalassemia : </label>
+                        <select id="Thalassemia" name="Thalassemia" class="form-select">
+                            <option selected value="0">normal</option>
+                            <option value="1">défaut fixe</option>
+                            <option value="2">défaut réversible</option>
+                        </select>        
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="on" id="save" name='save'>
+                            <label class="form-check-label" for="save">Enregistrer les données</label>
+                        </div>
+                    </div>
+                    <div class="col-12 submit-section" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary submit-btn">Prédire</button>
+                    </div>
+                </form>
+            </div>
+        </div><br>
+        {% if affiche == 1 %}
+            <div class="card" id="resultCard">
+                <div class="card-body custom-edit-service">
+                    <div class="result_prediction">
+                        <p>patient User name : {{username}}</p>
+                        <p>Age : {{age}}</p>
+                        <p>prediction maladie : 
+                            {% if prediction >= 50 %}
+                            <span style="color: #FF0000;">Vous souffrez de Cardiovascular</span>
+                            {% else %}
+                            <span style="color: #008000;">Vous n'êtes pas souffrez de Cardiovascular</span>
+                            {% endif %}
+                        </p>
+                        <p>pourcentage de maladie est : {{prediction}}%</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        
+    </div>
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static "js/result.js"%}"></script>
+{% endblock %}

@@ -69,6 +69,9 @@ Thumbs.db
 !.gitkeep
 local_settings.py
 
+# Ignore real settings (contains secrets)
+PFE/settings.py
+
 # Environment variables
 .env
 .env.local

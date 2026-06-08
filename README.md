@@ -348,6 +348,9 @@ EMAIL_HOST_USER=votre-email@gmail.com
 EMAIL_HOST_PASSWORD=votre-mot-passe-app
 ```
 
+Notez que vous pouvez aussi utiliser le fichier d'exemple `PFE/settings_example.py` fourni : copiez-le en `PFE/settings.py` et remplacez les valeurs `<YOUR_...>` par vos informations (clé secrète, email, mot de passe/app-password, etc.).
+Ne committez pas `PFE/settings.py` dans le dépôt public — il est déjà listé dans `.gitignore`.
+
 ---
 
 ## 🚀 Exécution du projet
